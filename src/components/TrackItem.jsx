@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import formatTime from './../utils/formatTime';
 
@@ -17,11 +16,11 @@ const TrackItem = ({ track, deleteTrack }) => {
     React.useEffect(() => {
         let interval = null;
         if (isActive) {
-          interval = setInterval(() => {
+          interval = window.setInterval(() => {
             setDuration(prevState => prevState + 1);
           }, 1000);
         } else if (!isActive && duration !== 0) {
-          clearInterval(interval);
+          window.clearInterval(interval);
         }
         return () => clearInterval(interval);
       }, [isActive, duration]);
@@ -39,7 +38,7 @@ const TrackItem = ({ track, deleteTrack }) => {
                 {formatTime(duration)}
             </span>
             <div>
-                <button className="btn" onClick={togglePlaying} >
+                <button className="btn" onClick={togglePlaying}>
                     <div className={classes}></div>
                 </button>
                 <button className="btn delete" onClick={clickHandler}><span></span></button>

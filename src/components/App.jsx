@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 
 import TrackList from './TrackList';
+import usePrevious from './../utils/usePrevious';
 
 const App = () => {
 
     const [trackTitle, setTrackTitle] = React.useState('');
-    const [trackList, setTrackList] = React.useState([]);
+    const [trackList, setTrackList] = React.useState([]); 
+
+    const onRefreshHandler = React.useCallback(() => {
+        localStorage.setItem('tracks', JSON.stringify(trackList));
+    },[trackList])
+
+    const prevOnRefreshHandler = usePrevious(onRefreshHandler);
+
+    useEffect(() => {
+        const storage = JSON.parse(localStorage.getItem('tracks')) || [];
+        if (storage) {
+            setTrackList(storage)
+        }
+    }, []);
+
+    useEffect(() => {
+        window.removeEventListener('beforeunload', prevOnRefreshHandler);
+        window.addEventListener('beforeunload', onRefreshHandler);
+        return () => window.removeEventListener('beforeunload', onRefreshHandler);
+    }, [onRefreshHandler])
 
     const changeHandler = React.useCallback(({ target }) => setTrackTitle(target.value), []);
 
@@ -36,7 +56,7 @@ const App = () => {
 
         setTrackList(newTrackList);
         setTrackTitle('');
-        
+
     }, [trackTitle, trackList]);
 
     const deleteTrack = React.useCallback((id) => {
