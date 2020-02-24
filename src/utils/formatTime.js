@@ -1,7 +1,8 @@
 function pad(num) {
     return ("0"+num).slice(-2);
 }
-function formatTime(secs) {
+function formatTime(ms) {
+    let secs = Math.floor(ms / 1000);
     let minutes = Math.floor(secs / 60);
     secs = secs%60;
     const hours = Math.floor(minutes/60)

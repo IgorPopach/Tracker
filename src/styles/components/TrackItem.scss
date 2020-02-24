@@ -8,43 +8,61 @@
         border-top: 1px solid rgb(224, 223, 223);
     }
 
-    &:hover {
+    &:hover,
+    &.playing {
         color: green;
         background-color: rgb(246, 248, 214);
     }
 
-    .btn {
-        height: 25px;
-        width: 25px;
-        border: 2px solid #000;
-        border-radius: 50%;
-        margin: 5px;
+    .title {
+        min-width: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 
-        .playing {
-            border-bottom: 4px solid transparent;
-            border-top: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-left: 7px solid #000;
-            margin-left: 2px;
-        }
+    .control-panel {
+        display: flex;
+        align-items: center;
 
-        .pause {
-            height: 9px;
-            width: 3px;
-            margin: auto;
-            border-right: 2px solid #000;
-            border-left: 2px solid #000;
-            border-radius: 15%;
-        }
+        .btn {
+            height: 25px;
+            width: 25px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            margin: 5px;
+            outline: none;
 
-        &.delete {
-            border-color: rgb(146, 13, 13);
+            .pause {
+                border-bottom: 4px solid transparent;
+                border-top: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-left: 7px solid #000;
+                margin-left: 2px;
+            }
 
-            span {
-                display: block;
-                border: 1px solid;
-                border-color: inherit;
-                border-radius: 30%;
+            .playing {
+                height: 9px;
+                width: 3px;
+                margin: auto;
+                border-right: 2px solid #000;
+                border-left: 2px solid #000;
+                border-radius: 15%;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.delete {
+                border-color: rgb(146, 13, 13);
+
+                span {
+                    display: block;
+                    border: 1px solid;
+                    border-color: inherit;
+                    border-radius: 30%;
+                }
             }
         }
     }

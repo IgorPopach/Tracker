@@ -9,4 +9,47 @@ body {
     margin: auto;
     text-align: center;
 
+    .input-field {
+        width: 50%;
+        margin: auto;
+        position: relative;
+
+        input {
+            border: 1px solid grey;
+            border-radius: 20px;
+            height: 26px;
+            width: 100%;
+            padding: 2px 15px 2px 15px;
+            outline: none;
+        }
+
+        .button {
+            position: absolute;
+            right: -28px;
+            top: 3px;
+            height: 25px;
+            width: 25px;
+            background-color: green;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            span {
+                display: block;
+                border-bottom: 6px solid transparent;
+                border-top: 6px solid transparent;
+                border-right: 5px solid transparent;
+                border-left: 11px solid white;
+                margin-left: 3px;
+            }
+        }
+    }
+
+    .track-list {
+        padding: 0;
+    }
 }
